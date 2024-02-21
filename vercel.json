@@ -1,12 +1,16 @@
 {
     "functions": {
-      "api": {
-        "runtime": "nodejs16.x",
-        "includeFiles": ["server.js"]
+      "api/server.js": {
+        "memory": 1024,
+        "maxDuration": 1
       }
     },
-    "rewrites": [
-      { "source": "/(.*)", "destination": "/api" }
+    "routes": [
+      {
+        "src": "/tags",
+        "methods": ["GET", "POST", "OPTIONS"],
+          
+        "dest": "api/server.js"
+      }
     ]
   }
-  
