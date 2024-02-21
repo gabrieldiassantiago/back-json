@@ -21,10 +21,16 @@ app.get('/tags', (req, res) => {
       const tags = tagsData.tags;
       
       // Aplicar filtros, se houver
-      const { title } = req.query;
+      const { title, _per_page } = req.query;
       let filteredTags = tags;
       if (title) {
         filteredTags = tags.filter(tag => tag.title === title);
+      }
+
+      // Limitar o número de resultados por página, se `_per_page` estiver presente
+      const perPage = _per_page ? parseInt(_per_page) : undefined;
+      if (perPage) {
+        filteredTags = filteredTags.slice(0, perPage);
       }
 
       res.json(filteredTags);
@@ -34,6 +40,7 @@ app.get('/tags', (req, res) => {
     }
   });
 });
+
 
 // Inicialização do servidor
 const PORT = process.env.PORT || 3000;
