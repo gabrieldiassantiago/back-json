@@ -1,13 +1,22 @@
-const jsonServer = require('json-server');
-const server = jsonServer.create();
-const router = jsonServer.router('server.json');
-const middlewares = jsonServer.defaults();
+const express = require('express');
+const path = require('path');
 
-const port = 3000; // Porta que deseja utilizar
+const app = express();
+const port = 3333;
 
-server.use(middlewares);
-server.use(router);
+// Defina o caminho para o arquivo JSON
+const jsonFilePath = path.join(__dirname,  'server.json');
 
-server.listen(port, () => {
-  console.log(`JSON Server está rodando na porta ${port}`);
+app.get('/tags', (req, res) => {
+  // Envie o arquivo JSON como resposta
+  res.sendFile(jsonFilePath, (err) => {
+    if (err) {
+      console.error('Erro ao enviar o arquivo JSON:', err);
+      res.status(500).send('Erro interno do servidor');
+    }
+  });
+});
+
+app.listen(port, () => {
+  console.log(`Servidor Express está rodando na porta ${port}`);
 });
