@@ -1,14 +1,15 @@
 {
   "functions": {
-    "api": {
-      "handler": "app.js",
-      "memory": 1024
+    "api/app.js": {
+      "memory": 1024,
+      "maxDuration": 1
     }
   },
-  "rewrites": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/app.js"
+      "src": "/tags",
+      "methods": ["GET", "POST", "OPTIONS"],
+      "dest": "api/app.js"
     }
   ]
 }
