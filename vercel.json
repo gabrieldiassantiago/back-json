@@ -9,6 +9,9 @@
     {
       "src": "/tags",
       "methods": ["GET", "POST", "OPTIONS"],
+          "headers": {
+              "Access-Control-Allow-Origin": "*"
+          },
       "dest": "api/app.js"
     }
   ]

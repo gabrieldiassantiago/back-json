@@ -1,12 +1,15 @@
 const express = require('express');
+const cors = require('cors'); // Importe o pacote cors
 const app = express();
 const fs = require('fs');
 const path = require('path');
 
 const SERVER_JSON_PATH = path.join(__dirname, 'server.json');
 
-// Rota para obter as tags
+// Use o middleware do cors
+app.use(cors());
 
+// Rota para obter as tags
 app.get('/tags', (req, res) => {
   // Leitura do arquivo JSON
   fs.readFile(SERVER_JSON_PATH, 'utf8', (err, data) => {
@@ -40,7 +43,6 @@ app.get('/tags', (req, res) => {
     }
   });
 });
-
 
 // Inicialização do servidor
 const PORT = process.env.PORT || 3000;
