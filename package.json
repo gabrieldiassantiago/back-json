@@ -2,15 +2,15 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node api/server.js"
+    "server": "json-server api/server.json --watch --port 3333"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "json-server": "^1.0.0-alpha.23"
   }
 }
