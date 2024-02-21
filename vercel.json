@@ -2,14 +2,12 @@
     "functions": {
       "api/server.js": {
         "memory": 1024,
-        "maxDuration": 1
+        "maxDuration": 10
       }
     },
     "routes": [
       {
-        "src": "/tags",
-        "methods": ["GET", "POST", "OPTIONS"],
-          
+        "src": "/tags",          
         "dest": "api/server.js"
       }
     ]
