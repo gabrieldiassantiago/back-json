@@ -1,22 +1,41 @@
 const express = require('express');
+const app = express();
+const fs = require('fs');
 const path = require('path');
 
-const app = express();
-const port = 3333;
+const SERVER_JSON_PATH = path.join(__dirname, 'server.json');
 
-// Defina o caminho para o arquivo JSON
-const jsonFilePath = path.join(__dirname,  'server.json');
-
+// Rota para obter as tags
 app.get('/tags', (req, res) => {
-  // Envie o arquivo JSON como resposta
-  res.sendFile(jsonFilePath, (err) => {
+  // Leitura do arquivo JSON
+  fs.readFile(SERVER_JSON_PATH, 'utf8', (err, data) => {
     if (err) {
-      console.error('Erro ao enviar o arquivo JSON:', err);
+      console.error(err);
+      res.status(500).send('Erro interno do servidor');
+      return;
+    }
+
+    try {
+      const tagsData = JSON.parse(data);
+      const tags = tagsData.tags;
+      
+      // Aplicar filtros, se houver
+      const { title } = req.query;
+      let filteredTags = tags;
+      if (title) {
+        filteredTags = tags.filter(tag => tag.title === title);
+      }
+
+      res.json(filteredTags);
+    } catch (error) {
+      console.error(error);
       res.status(500).send('Erro interno do servidor');
     }
   });
 });
 
-app.listen(port, () => {
-  console.log(`Servidor Express está rodando na porta ${port}`);
+// Inicialização do servidor
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor Express em execução na porta ${PORT}`);
 });

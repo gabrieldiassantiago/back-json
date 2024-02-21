@@ -1,15 +1,10 @@
 {
-  "version": 2,
+  "functions": {
+    "api": {
+      "handler": "server.js"
+    }
+  },
   "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "api/server.js"
-    }
-  ],
-  "builds": [
-    {
-      "src": "api/server.js",
-      "use": "@now/node"
-    }
+    { "src": "/(.*)", "dest": "/server.js" }
   ]
 }
