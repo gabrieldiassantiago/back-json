@@ -3,9 +3,6 @@
       "api": {
         "handler": "server.js"
       }
-    },
-    "rewrites": [
-      { "source": "/(.*)", "destination": "/api" }
-    ]
+    }
   }
   
