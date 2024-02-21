@@ -5,8 +5,7 @@
       }
     },
     "rewrites": [
-      { "source": "/tags", "function": "api" },
-      { "source": "/tags/*", "function": "api" }
+      { "source": "/(.*)", "destination": "/api" }
     ]
   }
   
