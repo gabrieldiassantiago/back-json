@@ -1,0 +1,14 @@
+{
+    "routes": [
+      { "handle": "filesystem" },
+      {
+        "src": "/tags",
+        "dest": "/server.json"
+      },
+      {
+        "src": "/.*",
+        "dest": "/server.json"
+      }
+    ]
+  }
+  
