@@ -1,8 +1,12 @@
 {
     "functions": {
       "api": {
-        "handler": "server.js"
+        "runtime": "nodejs16.x",
+        "includeFiles": ["server.js"]
       }
-    }
+    },
+    "rewrites": [
+      { "source": "/(.*)", "destination": "/api" }
+    ]
   }
   
